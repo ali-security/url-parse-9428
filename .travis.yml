@@ -1,26 +1,23 @@
 sudo: false
 language: node_js
 matrix:
-  fast_finish: true
-  include:
-    - node_js: "10"
-      env: SCRIPT=test
-    - node_js: "8"
-      env: SCRIPT=test
-    - node_js: "6"
-      env: SCRIPT=test
-    - node_js: "8"
-      env:
-        - secure: IF01oyIKSs0C5dARdYRTilKnU1TG4zenjjEPClkQxAWIpUOxl9xcNJWDVEOPxJ/4pVt+pozyT80Rp7efh6ZiREJIQI1tUboBKSqZzSbnD5uViQNSbQ90PaDP0FIUc0IQ5o07W36rijBB0DTmtU1VofzN9PKkJO7XiSSXevI8RcM=
-        - SAUCE_USERNAME=url-parse
-        - SCRIPT=test-browser
+    fast_finish: true
+    include:
+      - node_js: "10"
+        env: SCRIPT=test
+      - node_js: "8"
+        env: SCRIPT=test
+      - node_js: "6"
+        env: SCRIPT=test
 script:
   - "npm run ${SCRIPT}"
 after_script:
-  - 'if [ "${SCRIPT}" == "test" ]; then npm i coveralls@3 && cat coverage/lcov.info | coveralls; fi'
+  - 'if [ "${SCRIPT}" == "test" ]; then npm i coveralls@3 && cat coverage/lcov.info
+    | coveralls; fi'
 notifications:
-  irc:
-    channels:
-      - "irc.freenode.org#unshift"
-    on_success: change
-    on_failure: change
+    irc:
+        channels:
+          - "irc.freenode.org#unshift"
+        on_success: change
+        on_failure: change
+dist: trusty
